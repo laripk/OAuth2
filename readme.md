@@ -4,7 +4,7 @@ OAuth2 is a library for user authentication using third-party services (OAuth/OA
 
 ## Current Version and Status ##
 
-Current version is 0.8. Status is "release candidate" - despite we already have several real life projects built with usage of this library, we will change status to "stable" only after comprehensive set of acceptance tests is ready and runs successfuly.
+Current version is 0.8.5. Status is "release candidate" - despite we already have several real life projects built with usage of this library, we will change status to "stable" only after comprehensive set of acceptance tests is ready and runs successfuly.
 
 [View recent build in Teamcity](http://teamcity.codebetter.com/viewType.html?buildTypeId=bt1045&guest=1) 
 
@@ -151,6 +151,7 @@ This library is dependent on:
 - Andrew Semack (helped a lot with improvements on configuration as well as with extending list of supported services by implementing their clients)
 - Sascha Kiefer (simplified extending library with own provider implementations, added GitHub client)
 - Krisztián Pócza (added LinkedIn (OAuth 2) client)
+- Lari Kirby (adding Fitbit OAuth 2 client)
 
 ## Acknowledgements ##
 
@@ -177,7 +178,7 @@ and Java applications [YourKit Java Profiler](http://www.yourkit.com/java/profil
 ## License ##
 
 The MIT License (MIT)
-Copyright (c) 2012-2013 Constantin Titarenko, Andrew Semack and others
+Copyright (c) 2012-2015 Constantin Titarenko, Andrew Semack, Lari Kirby and others
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
