@@ -1,9 +1,10 @@
 ﻿using System.Reflection;
 
 [assembly: AssemblyTitle("OAuth2")]
+[assembly: AssemblyCompany("Constantin Titarenko, Andrew Semack, Lari Kirby and others")]
 [assembly: AssemblyCopyright("Copyright (c) Constantin Titarenko, Andrew Semack, Lari Kirby and others")]
-[assembly: AssemblyInformationalVersion("0.8.5.lari0001")]
+[assembly: AssemblyDescription("Allows you to perform user authentication via DigitalOcean, Facebook, Foursquare, GitHub, Google, Instagram, LinkedIn, MailRu, Odnoklassniki, Salesforce, Twitter, VK (Vkontakte), Windows Live, Yandex just in two method calls.")]
 
-// values are changed by CI
-[assembly: AssemblyVersion("0.8")] 
-[assembly: AssemblyFileVersion("0.8")]
+[assembly: AssemblyInformationalVersion("0.8.5-lari0001")]
+[assembly: AssemblyVersion("0.8.5.1")]
+[assembly: AssemblyFileVersion("0.8.5.1")]
