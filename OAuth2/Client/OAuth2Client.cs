@@ -75,7 +75,8 @@ namespace OAuth2.Client
         /// This URI should be used for rendering login link.
         /// </summary>
         /// <param name="state">
-        /// Any additional information that will be posted back by service.
+        /// Any additional information that will be posted back by service, 
+        /// eg, your application's user id and an anti-forgery token.
         /// </param>
         public virtual string GetLoginLinkUri(string state = null)
         {
