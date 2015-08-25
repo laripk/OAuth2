@@ -37,7 +37,7 @@ namespace OAuth2.Client {
         /// <param name="secretKey">A passphrase from which the key will be derived.</param>
         /// <returns></returns>
         public static string Pack(object yourdata, string secretKey) {
-            string token = Jose.JWT.Encode(yourdata, secretKey, JweAlgorithm.A256KW, JweEncryption.A256CBC_HS512);
+            string token = Jose.JWT.Encode(yourdata, secretKey, JweAlgorithm.PBES2_HS512_A256KW, JweEncryption.A256CBC_HS512);
             return token;
         }
 
