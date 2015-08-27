@@ -65,6 +65,17 @@ namespace OAuth2.Client.Impl {
         }
 
         /// <summary>
+        /// Fitbit's id for the uaer
+        /// </summary>
+        public string UserId { get; private set; }
+
+        protected override void AfterGetAccessToken(BeforeAfterRequestArgs args) {
+            base.AfterGetAccessToken(args);
+            //receiving args.Response & args.Parameters
+            UserId = ParseTokenResponse(args.Response.Content, "user_id");
+        }
+
+        /// <summary>
         /// Should return parsed <see cref="UserInfo"/> from content received from third-party service.
         /// </summary>
         /// <param name="content">The content which is received from third-party service.</param>
