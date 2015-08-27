@@ -192,6 +192,7 @@ namespace OAuth2.Client
         private void QueryAccessToken(NameValueCollection parameters)
         {
             var client = _factory.CreateClient(AccessTokenServiceEndpoint);
+            client.Authenticator = new HttpBasicAuthenticator(Configuration.ClientId, Configuration.ClientSecret);//added for fitbit. I wonder how many of the others this will break?
             var request = _factory.CreateRequest(AccessTokenServiceEndpoint, Method.POST);
 
             BeforeGetAccessToken(new BeforeAfterRequestArgs
