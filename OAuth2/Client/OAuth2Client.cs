@@ -176,10 +176,14 @@ namespace OAuth2.Client
         private void CheckErrorAndSetState(NameValueCollection parameters)
         {
             const string errorFieldName = "error";
-            var error = parameters[errorFieldName];
+            const string errorDescriptionName = "error_description";
+            const string errorUriName = "error_uri";
+
+            string error = parameters[errorFieldName];
             if (!error.IsEmpty())
             {
-                throw new UnexpectedResponseException(errorFieldName);
+                //throw new UnexpectedResponseException(errorFieldName);
+                throw AuthenticationException.Factory(parameters[errorFieldName], parameters[errorDescriptionName], parameters[errorUriName]);
             }
 
             State = parameters["state"];
@@ -213,7 +217,7 @@ namespace OAuth2.Client
 
             AccessToken = ParseTokenResponse(response.Content, AccessTokenKey);
             if (String.IsNullOrEmpty(AccessToken))
-                throw new UnexpectedResponseException(AccessTokenKey);
+                throw new ShouldNotBeEmptyException(AccessTokenKey);
 
             if (GrantType != "refresh_token")
                 RefreshToken = ParseTokenResponse(response.Content, RefreshTokenKey);

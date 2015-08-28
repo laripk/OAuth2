@@ -10,7 +10,7 @@ namespace OAuth2.Infrastructure
             var value = collection[key];
             if (value.IsEmpty())
             {
-                throw new UnexpectedResponseException(key);
+                throw new ShouldNotBeEmptyException(key);
             }
             return value;
         }

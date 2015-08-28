@@ -55,7 +55,7 @@ namespace OAuth2.Tests.Client
             factory.CreateClient().Execute(factory.CreateRequest()).Content = "something=something_other";
             descendant
                 .Invoking(x => x.GetLoginLinkUri())
-                .ShouldThrow<UnexpectedResponseException>()
+                .ShouldThrow<ShouldNotBeEmptyException>()
                 .And.FieldName.Should().Be("oauth_token");
         }
 
@@ -65,7 +65,7 @@ namespace OAuth2.Tests.Client
             factory.CreateClient().Execute(factory.CreateRequest()).Content = "oauth_token=token";
             descendant
                 .Invoking(x => x.GetLoginLinkUri())
-                .ShouldThrow<UnexpectedResponseException>()
+                .ShouldThrow<ShouldNotBeEmptyException>()
                 .And.FieldName.Should().Be("oauth_token_secret");
         }
 

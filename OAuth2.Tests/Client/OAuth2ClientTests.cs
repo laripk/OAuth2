@@ -111,8 +111,8 @@ namespace OAuth2.Tests.Client
             // act & assert
             descendant
                 .Invoking(x => x.GetUserInfo(parameters))
-                .ShouldThrow<UnexpectedResponseException>()
-                .And.FieldName.Should().Be("error");
+                .ShouldThrow<AuthenticationException>();
+                //.And.FieldName.Should().Be("error");
         }
 
         [Test]

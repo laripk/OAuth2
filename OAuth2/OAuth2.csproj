@@ -58,7 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorizationRoot.cs" />
+    <Compile Include="Client\Exceptions\AccessDeniedException.cs" />
+    <Compile Include="Client\Exceptions\AuthenticationException.cs" />
     <Compile Include="Client\BeforeAfterRequestArgs.cs" />
+    <Compile Include="Client\Exceptions\AuthServerException.cs" />
+    <Compile Include="Client\Exceptions\OAuth2Exception.cs" />
     <Compile Include="Client\Impl\AsanaClient.cs" />
     <Compile Include="Client\Impl\DigitalOceanClient.cs" />
     <Compile Include="Client\Impl\FitbitClient.cs" />
@@ -80,8 +84,9 @@
     <Compile Include="Client\Endpoint.cs" />
     <Compile Include="Client\IClient.cs" />
     <Compile Include="Client\OAuthClient.cs" />
+    <Compile Include="Client\Exceptions\ShouldNotBeEmptyException.cs" />
     <Compile Include="Client\StateHelper.cs" />
-    <Compile Include="Client\UnexpectedResponseException.cs" />
+    <Compile Include="Client\Exceptions\UnexpectedResponseException.cs" />
     <Compile Include="Configuration\ConfigurationManager.cs" />
     <Compile Include="Configuration\IConfigurationManager.cs" />
     <Compile Include="Configuration\IOAuth2Configuration.cs" />
