@@ -12,16 +12,14 @@ namespace OAuth2.Client {
         /// </summary>
         public IRestResponse Response { get; private set; }
 
-        public override string Message {
-            get { return "There was a problem with the response. Please inspect Response property."; }
-            // there is no good message for this situation.
-        }
+        private const string MessageTemplate = "There was a problem with the response. Status code was {0}.";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UnexpectedResponseException"/> class.
         /// </summary>
         /// <param name="response">The response.</param>
-        public UnexpectedResponseException(IRestResponse response) : base() {
+        public UnexpectedResponseException(IRestResponse response) 
+            : base(string.Format(MessageTemplate,response.StatusCode)) {
             Response = response;
         }
 
