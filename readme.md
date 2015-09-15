@@ -10,7 +10,7 @@ Current version is 0.8.5. Status is "release candidate" - despite we already hav
 
 [![Build Status](http://teamcity.codebetter.com/app/rest/builds/buildType:%28id:bt1045%29/statusIcon)](http://teamcity.codebetter.com/viewType.html?buildTypeId=bt1045&guest=1)
 
-Lari's current version is 0.8.6 and is available from [her MyGet feed](https://www.myget.org/Discovery/Feed/laripk-dotnet)
+Lari's current version is 0.8.70 and is available from [her MyGet feed](https://www.myget.org/Discovery/Feed/laripk-dotnet)
 
 [![laripk-dotnet MyGet Build Status](https://www.myget.org/BuildSource/Badge/laripk-dotnet?identifier=6c0d86e3-7813-49f5-a7c6-e0b7a1a4f78b)](https://www.myget.org/)
 
