@@ -27,7 +27,7 @@ namespace OAuth2.Client.Impl
         {
             args.Request.AddObject(new
             {
-                code = args.Parameters.GetOrThrowUnexpectedResponse("code"),
+                code = args.Parameters.GetOrThrowMissingValue("code"),
                 client_id = args.Configuration.ClientId,
                 client_secret = args.Configuration.ClientSecret,
                 redirect_uri = args.Configuration.RedirectUri,

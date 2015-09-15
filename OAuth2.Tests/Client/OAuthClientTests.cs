@@ -50,22 +50,22 @@ namespace OAuth2.Tests.Client
         }
 
         [Test]
-        public void Should_ThrowUnexpectedResponse_When_OAuthTokenIsEmpty()
+        public void Should_ThrowCustomException_When_OAuthTokenIsEmpty()
         {
             factory.CreateClient().Execute(factory.CreateRequest()).Content = "something=something_other";
             descendant
                 .Invoking(x => x.GetLoginLinkUri())
-                .ShouldThrow<ShouldNotBeEmptyException>()
+                .ShouldThrow<MissingValueException>()
                 .And.FieldName.Should().Be("oauth_token");
         }
 
         [Test]
-        public void Should_ThrowUnexpectedResponse_When_OAuthSecretIsEmpty()
+        public void Should_ThrowCustomException_When_OAuthSecretIsEmpty()
         {
             factory.CreateClient().Execute(factory.CreateRequest()).Content = "oauth_token=token";
             descendant
                 .Invoking(x => x.GetLoginLinkUri())
-                .ShouldThrow<ShouldNotBeEmptyException>()
+                .ShouldThrow<MissingValueException>()
                 .And.FieldName.Should().Be("oauth_token_secret");
         }
 

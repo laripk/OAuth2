@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>Easy to use (just 2 method calls) and well documented OAuth2/OAuth client with comprehensive list of supported providers.</summary>
-    <releaseNotes>Fix old tests</releaseNotes>
+    <releaseNotes>Renamed an exception</releaseNotes>
     <copyright>Copyright 2012-2015</copyright>
     <tags>OAuth2, OAuth, DigitalOcean, Facebook, Fitbit, Foursquare, GitHub, Google, Instagram, LinkedIn, MailRu, Odnoklassniki, Twitter, VK (Vkontakte), Windows Live, Yandex</tags>
     <dependencies>

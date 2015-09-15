@@ -5,12 +5,12 @@ namespace OAuth2.Infrastructure
 {
     public static class NameValueCollectionExtensions
     {
-        public static string GetOrThrowUnexpectedResponse(this NameValueCollection collection, string key)
+        public static string GetOrThrowMissingValue(this NameValueCollection collection, string key)
         {
             var value = collection[key];
             if (value.IsEmpty())
             {
-                throw new ShouldNotBeEmptyException(key);
+                throw new MissingValueException(key);
             }
             return value;
         }

@@ -50,24 +50,24 @@ namespace OAuth2.Tests.Client
         }
 
         [Test]
-        public void Should_ThrowUnexpectedResponse_When_CodeIsNotOk()
+        public void Should_ThrowCustomException_When_CodeIsNotOk()
         {
             restResponse.StatusCode = HttpStatusCode.InternalServerError;
 
             descendant
                 .Invoking(x => x.GetUserInfo(new NameValueCollection()))
-                .ShouldThrow<ShouldNotBeEmptyException>();
+                .ShouldThrow<MissingValueException>();
         }
 
         [Test]
-        public void Should_ThrowUnexpectedResponse_When_ResponseIsEmpty()
+        public void Should_ThrowCustomException_When_ResponseIsEmpty()
         {
             restResponse.StatusCode = HttpStatusCode.OK;
             restResponse.Content.Returns("");
             
             descendant
                 .Invoking(x => x.GetUserInfo(new NameValueCollection()))
-                .ShouldThrow<ShouldNotBeEmptyException>();
+                .ShouldThrow<MissingValueException>();
         }
 
         [Test]

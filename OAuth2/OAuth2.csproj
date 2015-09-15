@@ -84,7 +84,7 @@
     <Compile Include="Client\Endpoint.cs" />
     <Compile Include="Client\IClient.cs" />
     <Compile Include="Client\OAuthClient.cs" />
-    <Compile Include="Client\Exceptions\ShouldNotBeEmptyException.cs" />
+    <Compile Include="Client\Exceptions\MissingValueException.cs" />
     <Compile Include="Client\StateHelper.cs" />
     <Compile Include="Client\Exceptions\UnexpectedResponseException.cs" />
     <Compile Include="Configuration\ConfigurationManager.cs" />

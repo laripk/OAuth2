@@ -81,8 +81,8 @@ namespace OAuth2.Client
         /// <returns></returns>
         public UserInfo GetUserInfo(NameValueCollection parameters)
         {
-            AccessToken = parameters.GetOrThrowUnexpectedResponse(OAuthTokenKey);
-            QueryAccessToken(parameters.GetOrThrowUnexpectedResponse("oauth_verifier"));
+            AccessToken = parameters.GetOrThrowMissingValue(OAuthTokenKey);
+            QueryAccessToken(parameters.GetOrThrowMissingValue("oauth_verifier"));
 
             var result = ParseUserInfo(QueryUserInfo());
             result.ProviderName = Name;
@@ -142,8 +142,8 @@ namespace OAuth2.Client
 
             var collection = HttpUtility.ParseQueryString(response.Content);
 
-            AccessToken = collection.GetOrThrowUnexpectedResponse(OAuthTokenKey);
-            AccessTokenSecret = collection.GetOrThrowUnexpectedResponse(OAuthTokenSecretKey);
+            AccessToken = collection.GetOrThrowMissingValue(OAuthTokenKey);
+            AccessTokenSecret = collection.GetOrThrowMissingValue(OAuthTokenSecretKey);
         }
 
         /// <summary>
@@ -180,8 +180,8 @@ namespace OAuth2.Client
             var content = client.ExecuteAndVerify(request).Content;
             var collection = HttpUtility.ParseQueryString(content);
 
-            AccessToken = collection.GetOrThrowUnexpectedResponse(OAuthTokenKey);
-            AccessTokenSecret = collection.GetOrThrowUnexpectedResponse(OAuthTokenSecretKey);
+            AccessToken = collection.GetOrThrowMissingValue(OAuthTokenKey);
+            AccessTokenSecret = collection.GetOrThrowMissingValue(OAuthTokenSecretKey);
         }
 
         protected virtual void BeforeGetAccessToken(BeforeAfterRequestArgs args)

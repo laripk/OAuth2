@@ -217,7 +217,7 @@ namespace OAuth2.Client
 
             AccessToken = ParseTokenResponse(response.Content, AccessTokenKey);
             if (String.IsNullOrEmpty(AccessToken))
-                throw new ShouldNotBeEmptyException(AccessTokenKey);
+                throw new MissingValueException(AccessTokenKey);
 
             if (GrantType != "refresh_token")
                 RefreshToken = ParseTokenResponse(response.Content, RefreshTokenKey);
@@ -260,7 +260,7 @@ namespace OAuth2.Client
             {
                 args.Request.AddObject(new
                 {
-                    refresh_token = args.Parameters.GetOrThrowUnexpectedResponse("refresh_token"),
+                    refresh_token = args.Parameters.GetOrThrowMissingValue("refresh_token"),
                     client_id = Configuration.ClientId,
                     client_secret = Configuration.ClientSecret,
                     grant_type = GrantType
@@ -270,7 +270,7 @@ namespace OAuth2.Client
             {
                 args.Request.AddObject(new
                 {
-                    code = args.Parameters.GetOrThrowUnexpectedResponse("code"),
+                    code = args.Parameters.GetOrThrowMissingValue("code"),
                     client_id = Configuration.ClientId,
                     client_secret = Configuration.ClientSecret,
                     redirect_uri = Configuration.RedirectUri,
