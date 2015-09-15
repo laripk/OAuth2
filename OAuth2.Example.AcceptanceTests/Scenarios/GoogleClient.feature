@@ -1,5 +1,9 @@
 ﻿Feature: Google Client
 
+# Note: For this to work the webserver you're testing against needs to have
+# a Google client configured and enabled in the web.config,
+# and seems to need a real Google client id & secret as well
+
 Scenario Outline: Authentication
 	Given I have opened example application
 	When I have clicked "Log In (Google)" link

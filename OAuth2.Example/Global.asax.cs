@@ -68,7 +68,7 @@ namespace OAuth2.Example
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
+            //builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
             builder

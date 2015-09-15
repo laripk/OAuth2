@@ -56,7 +56,7 @@ namespace OAuth2.Tests.Client
 
             descendant
                 .Invoking(x => x.GetUserInfo(new NameValueCollection()))
-                .ShouldThrow<UnexpectedResponseException>();
+                .ShouldThrow<ShouldNotBeEmptyException>();
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace OAuth2.Tests.Client
             
             descendant
                 .Invoking(x => x.GetUserInfo(new NameValueCollection()))
-                .ShouldThrow<UnexpectedResponseException>();
+                .ShouldThrow<ShouldNotBeEmptyException>();
         }
 
         [Test]

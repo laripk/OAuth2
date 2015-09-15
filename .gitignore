@@ -1,3 +1,5 @@
+TestResult.xml
+*.VisualState.xml
 bin
 obj
 *ReSharper*
