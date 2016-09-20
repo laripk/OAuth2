@@ -6,7 +6,8 @@ using Newtonsoft.Json.Linq;
 using OAuth2.Configuration;
 using OAuth2.Infrastructure;
 using OAuth2.Models;
-using RestSharp;
+
+using RestSharp.Authenticators;
 
 namespace OAuth2.Client.Impl
 {
@@ -83,8 +84,13 @@ namespace OAuth2.Client.Impl
             });
 
             var response = client.ExecuteAndVerify(request);
-            var userEmails = ParseEmailAddresses(response.Content);
-            userInfo.Email = userEmails.First(u => u.IsPrimary).Email;
+            var userEmails = ParseEmailAddresses(response.Content).Where(u => !String.IsNullOrEmpty(u.Email)).ToList();
+            
+            string primaryEmail = userEmails.Where(u => u.Primary).Select(u => u.Email).FirstOrDefault();
+            string verifiedEmail = userEmails.Where(u => u.Verified).Select(u => u.Email).FirstOrDefault();
+            string fallbackEmail = userEmails.Select(u => u.Email).FirstOrDefault();
+            userInfo.Email = primaryEmail ?? verifiedEmail ?? fallbackEmail;
+            
             return userInfo;
         }
 
@@ -133,8 +139,8 @@ namespace OAuth2.Client.Impl
         protected class UserEmails
         {
             public string Email { get; set; }
-            public bool IsPrimary { get; set; }
-            public bool IsVerified { get; set; }
+            public bool Primary { get; set; }
+            public bool Verified { get; set; }
         }
     }
 }

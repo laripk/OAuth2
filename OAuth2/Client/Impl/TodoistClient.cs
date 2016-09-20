@@ -1,25 +1,23 @@
-using System.Linq;
 using Newtonsoft.Json.Linq;
 using OAuth2.Configuration;
 using OAuth2.Infrastructure;
 using OAuth2.Models;
+using RestSharp;
 
 namespace OAuth2.Client.Impl
 {
     /// <summary>
-    /// Yandex authentication client.
+    /// Todoist authentication client.
     /// </summary>
-    public class YandexClient : OAuth2Client
+    public class TodoistClient : OAuth2Client
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="YandexClient"/> class.
+        /// Initializes a new instance of the <see cref="TodoistClient"/> class.
         /// </summary>
         /// <param name="factory">The factory.</param>
         /// <param name="configuration">The configuration.</param>
-        public YandexClient(IRequestFactory factory, IClientConfiguration configuration)
-            : base(factory, configuration)
-        {
-        }
+        public TodoistClient(IRequestFactory factory, IClientConfiguration configuration)
+            : base(factory, configuration) {}
 
         /// <summary>
         /// Defines URI of service which issues access code.
@@ -30,8 +28,8 @@ namespace OAuth2.Client.Impl
             {
                 return new Endpoint
                 {
-                    BaseUri = "https://oauth.yandex.ru",
-                    Resource = "/authorize"
+                    BaseUri = "https://todoist.com/",
+                    Resource = "oauth/authorize"
                 };
             }
         }
@@ -45,8 +43,8 @@ namespace OAuth2.Client.Impl
             {
                 return new Endpoint
                 {
-                    BaseUri = "https://oauth.yandex.ru",
-                    Resource = "/token"
+                    BaseUri = "https://todoist.com/",
+                    Resource = "oauth/access_token"
                 };
             }
         }
@@ -60,20 +58,32 @@ namespace OAuth2.Client.Impl
             {
                 return new Endpoint
                 {
-                    BaseUri = "https://login.yandex.ru",
-                    Resource = "/info"
+                    BaseUri = "https://todoist.com/",
+                    Resource = "API/v6/sync"
                 };
             }
         }
 
         /// <summary>
-        /// Called just before issuing request to third-party service when everything is ready.
-        /// Allows to add extra parameters to request or do any other needed preparations.
+        /// Friendly name of provider (OAuth2 service).
         /// </summary>
+        public override string Name
+        {
+            get { return "Todoist"; }
+        }
+
+
         protected override void BeforeGetUserInfo(BeforeAfterRequestArgs args)
         {
-            // Source document 
-            // http://api.yandex.com/oauth/doc/dg/yandex-oauth-dg.pdf
+            args.Client.Authenticator = null;
+            args.Request.Parameters.Add(new Parameter
+            {
+                Name = "token",
+                Type = ParameterType.GetOrPost,
+                Value = AccessToken
+            });
+            args.Request.AddParameter("resource_types", "[\"all\"]");
+            base.BeforeGetUserInfo(args);
         }
 
         /// <summary>
@@ -83,19 +93,18 @@ namespace OAuth2.Client.Impl
         protected override UserInfo ParseUserInfo(string content)
         {
             var response = JObject.Parse(content);
-            var names = response["real_name"].Value<string>().Split(' ');
             return new UserInfo
             {
-                Id = response["id"].Value<string>(),
-                FirstName = names.Any() ? names.First() : response["display_name"].Value<string>(),
-                LastName = names.Count() > 1 ? names.Last() : string.Empty,
-                Email = response["default_email"].SafeGet(x => x.Value<string>()),
+                Id = response["User"]["id"].Value<string>(),
+                Email = response["User"]["email"].SafeGet(x => x.Value<string>()),
+                LastName = response["User"]["full_name"].Value<string>(),
+                AvatarUri =
+                {
+                    Small = response["User"]["avatar_small"].Value<string>(),
+                    Normal = response["User"]["avatar_medium"].Value<string>(),
+                    Large = response["User"]["avatar_big"].Value<string>(),
+                }
             };
-        }
-
-        public override string Name
-        {
-            get { return "Yandex"; }
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using OAuth2.Configuration;
 using OAuth2.Infrastructure;
 using OAuth2.Models;
+using RestSharp.Authenticators;
 
 namespace OAuth2.Client.Impl {
     /// <summary>
@@ -74,27 +75,40 @@ namespace OAuth2.Client.Impl {
             //receiving args.Response & args.Parameters
             UserId = ParseTokenResponse(args.Response.Content, "user_id");
         }
+        protected override void BeforeGetAccessToken(BeforeAfterRequestArgs args)
+        {
+            args.Client.Authenticator = new HttpBasicAuthenticator(Configuration.ClientId, Configuration.ClientSecret);
+            base.BeforeGetAccessToken(args);
+        }
 
+        protected override void BeforeGetUserInfo(BeforeAfterRequestArgs args)
+        {
+            args.Client.Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(AccessToken, "Bearer");
+            base.BeforeGetUserInfo(args);
+        }
         /// <summary>
         /// Should return parsed <see cref="UserInfo"/> from content received from third-party service.
         /// </summary>
         /// <param name="content">The content which is received from third-party service.</param>
-        protected override UserInfo ParseUserInfo(string content) {
-            var cnt = JObject.Parse(content);
-            var names = (cnt["fullName"].SafeGet(x => x.Value<string>()) ?? string.Empty).Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            var result = new UserInfo {
-                Id = cnt["encodedId"].SafeGet(x => x.Value<string>()),
+        protected override UserInfo ParseUserInfo(string content)
+        {
+            var response = JObject.Parse(content);
+            var names = response["user"]["fullName"].Value<string>().Split(' ');
+            var avatarUri = response["user"]["avatar"].Value<string>();
+            return new UserInfo
+            {
+                Id = response["user"]["encodedId"].Value<string>(),
                 Email = string.Empty, //not documented to come back
                 ProviderName = this.Name,
-                FirstName = names.Count > 0 ? names.First() : cnt["displayName"].Value<string>(),
-                LastName = names.Count > 1 ? names.Last() : string.Empty,
-                AvatarUri = {
-                    Small = string.Empty,
-                    Normal = cnt["avatar"].SafeGet(x => x.Value<string>()),
-                    Large = string.Empty
-                }
+                FirstName = names.Any() ? names.First() : response["user"]["displayName"].Value<string>(),
+                LastName = names.Count() > 1 ? names.Last() : string.Empty,
+                AvatarUri =
+                    {
+                        Small = null,
+                        Normal = avatarUri,
+                        Large = null
+                    }
             };
-            return result;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿# OAuth2 #
+# OAuth2 #
 
 OAuth2 is a library for user authentication using third-party services (OAuth/OAuth2 protocol) such as Google, Facebook and so on.
 
@@ -111,9 +111,10 @@ Use user info as you wish, for example, display user details:
 
 ## Supported Services ##
 
-- DigitalOcean
 - Asana
+- DigitalOcean
 - Facebook
+- Fitbit (in progress)
 - Foursquare
 - GitHub
 - Google
@@ -122,9 +123,14 @@ Use user info as you wish, for example, display user details:
 - MailRu
 - Odnoklassniki
 - Salesforce
+- Spotify
+- Todoist
 - Twitter
+- Uber
 - VK (Vkontakte)
 - Windows Live
+- Xing
+- Yahoo
 - Yandex
 
 ## Goals ##
@@ -156,6 +162,8 @@ This library is dependent on:
 - Sascha Kiefer (simplified extending library with own provider implementations, added GitHub client)
 - Krisztián Pócza (added LinkedIn (OAuth 2) client)
 - Lari Kirby (adding Fitbit OAuth 2 client)
+- [Jamie Houston](/JamieHouston) (added a [Todoist client](/tree/master/OAuth2/Client/Impl/TodoistClient.cs))
+- [Sasidhar Kasturi](https://github.com/skasturi) (added Uber, Spotify, Yahoo)
 
 ## Acknowledgements ##
 

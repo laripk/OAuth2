@@ -38,15 +38,22 @@
   <ItemGroup>
     <Reference Include="jose-jwt, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\jose-jwt.1.9.0\lib\4.0\jose-jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=2.6.3.862, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc3.2.6.3.862\lib\NET40\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RestSharp, Version=105.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.105.1.0\lib\net4\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net4\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -66,6 +73,8 @@
     <Compile Include="Client\Impl\AsanaClient.cs" />
     <Compile Include="Client\Impl\DigitalOceanClient.cs" />
     <Compile Include="Client\Impl\FitbitClient.cs" />
+    <Compile Include="Client\Impl\SpotifyClient.cs" />
+    <Compile Include="Client\Impl\TodoistClient.cs" />
     <Compile Include="Client\Impl\SalesforceClient.cs" />
     <Compile Include="Client\Impl\FacebookClient.cs" />
     <Compile Include="Client\Impl\FoursquareClient.cs" />
@@ -76,9 +85,11 @@
     <Compile Include="Client\Impl\MailRuClient.cs" />
     <Compile Include="Client\Impl\OdnoklassnikiClient.cs" />
     <Compile Include="Client\Impl\TwitterClient.cs" />
+    <Compile Include="Client\Impl\UberClient.cs" />
     <Compile Include="Client\Impl\VkClient.cs" />
     <Compile Include="Client\Impl\WindowsLiveClient.cs" />
     <Compile Include="Client\Impl\XingClient.cs" />
+    <Compile Include="Client\Impl\YahooClient.cs" />
     <Compile Include="Client\Impl\YandexClient.cs" />
     <Compile Include="Client\OAuth2Client.cs" />
     <Compile Include="Client\Endpoint.cs" />
@@ -112,7 +123,10 @@
     <None Include="OAuth2.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
