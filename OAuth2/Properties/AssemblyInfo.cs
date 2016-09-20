@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 
 [assembly: AssemblyTitle("OAuth2")]
+[assembly: AssemblyCompany("Constantin Titarenko, Andrew Semack, Lari Kirby and others")]
 [assembly: AssemblyCopyright("Copyright (c) Constantin Titarenko, Andrew Semack, Lari Kirby and others")]
 [assembly: AssemblyDescription(@"Allows you to perform user authentication via 
 Asana, DigitalOcean, Facebook, Fitbit, Foursquare, GitHub, Google, Instagram, LinkedIn, MailRu, Odnoklassniki, 
