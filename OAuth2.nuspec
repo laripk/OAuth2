@@ -9,7 +9,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>Easy to use (just 2 method calls) and well documented OAuth2/OAuth client with comprehensive list of supported providers.</summary>
-    <releaseNotes>Merge changes from titarenko/OAuth2</releaseNotes>
+    <releaseNotes>Merge changes from titarenko/OAuth2 and fix results.</releaseNotes>
     <tags>
       OAuth2, OAuth,
       Asana, DigitalOcean, Facebook, Fitbit, Foursquare, GitHub, Google, Instagram, LinkedIn, MailRu, Odnoklassniki,
